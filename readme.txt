@@ -1,25 +1,17 @@
 Create a simple blog with CodeIgniter
 
-Written by Pisyek Kumar
-Email: pisyek@gmail.com
-Website: www.pisyek.com
-
 How-to:
 
-1. Create a database name blog.
+1. Create a database named CI01.
 
-2. Import the mySQL dump. (blog.sql)
+2. Import the MySQL schema file (schema.sql)
 
-3. Change the config.php and database.php according to your setting.
-
-4. That's all.
+3. Change the config.php and database.php according to your settings.
 
 Thanks.
 
-
-
 Tested with:
 
-Wampserver 2.1
-PHP 5.3.5
-MySQL 5.5.8
+Wampserver 2.2
+PHP 5.3.10
+MySQL 5.5.20
