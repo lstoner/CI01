@@ -13,5 +13,6 @@ Thanks.
 Tested with:
 
 Wampserver 2.2
+MAMP 2.1.0
 PHP 5.3.10
 MySQL 5.5.20
