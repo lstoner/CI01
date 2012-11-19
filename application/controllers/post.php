@@ -11,6 +11,16 @@ class Post extends CI_Controller {
 		
 		$this->load->model('post_model');
 		$this->load->model('comment_model');
+		
+		$config['upload_path'] = './uploads';
+		$config['allowed_types'] = 'gif|jpg|png|txt|pdf|ppt|pptx';
+		$config['max_size']	= '3000';
+		$config['max_width'] = '3000';
+		$config['max_height'] = '3000';
+		
+		$this->load->library('upload', $config);
+		
+		$this->load->library('image_lib');
 	}
 		
 	// show a list of posts
@@ -92,7 +102,39 @@ class Post extends CI_Controller {
 			$this->create();
 		}
 		else {
-			$this->post_model->insert();
+			$image = "";
+			if (array_key_exists('image', $_FILES) && ($_FILES['image']['name'] != "") && ! $this->upload->do_upload('image')) {
+					
+				// Uploading failed. $error will hold the error indicators, so show them an error
+				$this->data->messages['error'] = $this->upload->display_errors();
+				$success = false;
+			}
+			else {
+				if (array_key_exists('image', $_FILES) && $_FILES['image']['name'] != "") {
+					$upload_data = $this->upload->data();
+			
+					$image = $upload_data['file_name'];
+					
+					$config['image_library'] = 'gd2';
+					$config['source_image'] = './uploads/' . $image;
+					//$config['new_image'] = './uploads/' . $image . "SMALL.png";
+					$config['create_thumb'] = TRUE;
+					$config['maintain_ratio'] = TRUE;
+					$config['width'] = 75;
+					$config['height'] = 50;
+
+					$this->image_lib->initialize($config);
+								
+					if ( ! $this->image_lib->resize()) {
+						echo $this->image_lib->display_errors();
+					}
+				}
+				else {
+					$image = "";
+				}
+			}
+				
+			$this->post_model->insert($image);
 			$this->session->set_flashdata('message', '1 new post added!');
 			redirect('post/index');
 		}

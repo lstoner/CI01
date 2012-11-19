@@ -5,6 +5,7 @@ create table posts (
   id int(11) NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
   body text NOT NULL,
+  image varchar(255) NOT NULL,
   date_created datetime NOT NULL,
   last_updated datetime NOT NULL,
   PRIMARY KEY(id)

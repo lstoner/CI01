@@ -23,13 +23,14 @@ class Post_model extends CI_Model {
 		return $query->result();
 	}
 	
-	function insert() {
+	function insert($image) {
 		$date = date('Y-m-d H:i:s');
 		$data = array(
 			'title' => $_POST['title'],
 			'body' => $_POST['body'],
 			'date_created' => $date,
-		  'last_updated' => $date
+		  'last_updated' => $date,
+			'image' => $image
 		);
 		$this->db->insert('posts', $data);
 	}
