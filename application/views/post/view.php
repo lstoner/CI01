@@ -1,10 +1,12 @@
-<?php foreach($query as $post): ?>
-  <div class="post">
-    <div class="post meta">
-    	<div class="title">
-    	  <h2 style="margin-left: 0px"><?php echo $post->title; ?></h2>
-    	</div>
-      <div class="date">
+<div class="post">
+  <div style="float: left; margin-right: 5px">
+    <img src="<?php echo base_url() ?>/uploads/thumbs/<?php echo $post->image ?>" />
+  </div>
+  <div class="post meta">
+  	<div class="title">
+  	  <h2 style="margin-left: 0px"><?php echo $post->title; ?></h2>
+   	</div>
+    <div class="date">
         <?php date_default_timezone_set('Etc/UTC');
 			      $phpdate = strtotime($post->date_created . " + 1 hour");
 			      date_default_timezone_set('America/Los_Angeles');
@@ -14,15 +16,14 @@
     <br clear="all" />
     <p><?php echo $post->body;?></p>
     <div style="float:right; font-size:12px; margin:0 5px;"><a>
-		<?php if( $total_comments > 1)
-				{echo $total_comments . ' comments';}
-				else if($total_comments === 1)
-				{echo $total_comments . ' comment';}
-				else{ echo 'No comments yet!';}?></a>
-		</div> 
-		<div style="clear:both"></div>             
-   </div><!-- Close post -->
-<?php endforeach; ?>
+<?php if( $total_comments > 1)
+		{echo $total_comments . ' comments';}
+		else if($total_comments === 1)
+		{echo $total_comments . ' comment';}
+		else{ echo 'No comments yet!';}?></a>
+  </div> 
+  <div style="clear:both"></div>             
+</div><!-- Close post -->
             
 <div id="comment">
    <?php $this->load->view('post/comment'); ?>

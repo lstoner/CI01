@@ -1,7 +1,7 @@
 <?php if($comments): foreach($comments as $row): ?>
 <div class="commentor">
     <div>
-    	<strong><?php echo $row->email;?></strong> says on 
+    	<strong><?php echo $row->email;?></strong> said on 
 			<span style="font-size:14px;">
 			   <?php date_default_timezone_set('Etc/UTC');
 			      $phpdate = strtotime($row->date_created . " + 1 hour");

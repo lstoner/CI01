@@ -7,14 +7,7 @@
 class Post_model extends CI_Model {
 
 	function get($id) {
-		$this->db->where('id', $id);
-		$query = $this->db->get('posts');
-	  if ($query->num_rows() !== 0) {
-	  	return $query->result();
-	  }
-	  else {
-	  	return FALSE;
-	  }
+		return $this->db->where('id', $id)->get('posts')->row();
 	}
 	
 	function get_all() {		
@@ -35,17 +28,17 @@ class Post_model extends CI_Model {
 		$this->db->insert('posts', $data);
 	}
 	
-  public function update($image) {
+  public function update($id, $image) {
 		$this->title = $_POST['title'];
 		$this->body = $_POST['body'];
 		$this->last_updated = date('Y-m-d H:i:s');
 		$this->image = $image;
 
-		$this->db->update('posts', $this, array('id' => $_POST['id']));
+		$this->db->update('posts', $this, array('id' => $id));
 	}
 
-	public function delete() {
-		$this->db->delete('posts', array('id' => $_POST['id']));
+	public function delete($id) {
+		$this->db->delete('posts', array('id' => $id));
 	}
 	
 	function get_comments($post_id)	{
