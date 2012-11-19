@@ -35,10 +35,11 @@ class Post_model extends CI_Model {
 		$this->db->insert('posts', $data);
 	}
 	
-  public function update() {
+  public function update($image) {
 		$this->title = $_POST['title'];
 		$this->body = $_POST['body'];
 		$this->last_updated = date('Y-m-d H:i:s');
+		$this->image = $image;
 
 		$this->db->update('posts', $this, array('id' => $_POST['id']));
 	}
