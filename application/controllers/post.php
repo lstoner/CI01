@@ -41,7 +41,9 @@ class Post extends CI_Controller {
 		);		
 	}
 		
-	// show a list of posts
+	/**
+	 * show a list of posts
+	 */
 	public function index() {
 		$this->data['title'] = "Home";
 		
@@ -59,6 +61,8 @@ class Post extends CI_Controller {
 		$this->data['comments'] = $this->post_model->get_comments($id);
 		$this->data['post_id'] = $id;
 		$this->data['total_comments'] = $this->post_model->total_comments($id);
+		
+		$this->data['title'] = "Post Details";
 		
 		$this->load->view('post/view', $this->data);
 	}

@@ -11,7 +11,7 @@
 <?php echo form_open_multipart($this->uri->uri_string(), 'class="crud"'); ?>
 <p>
 	<strong>Title</strong>:<br /> 
-	<?php echo form_input('title', $post->title, 'size="80" style="width:200px"'); ?>
+	<?php echo form_input('title', $post->title, 'size="80" style="width:600px"'); ?>
 </p>
 
 <p>
