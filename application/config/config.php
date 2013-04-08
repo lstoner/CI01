@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'https://lelu.homelinux.org/CI01/';
+$config['base_url']	= 'http://localhost/CI01_Liza/';
 
 /*
 |--------------------------------------------------------------------------

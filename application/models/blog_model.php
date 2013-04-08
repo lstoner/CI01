@@ -3,27 +3,24 @@ class Blog_model extends CI_Model {
 
 	function get($id) {
 		$this->db->where('id', $id);
-		$query = $this->db->get('comments');
+		$query = $this->db->get('blogs');
 		return $query->row_array();
 	}
 	
 	function get_all() {
 		$this->db->order_by('date_created','desc');
-		$query = $this->db->get('comments');
+		$query = $this->db->get('blogs');
 		return $query->result_array();
 	}
 	
-	function insert($post_id, $title, $email, $body) {
+	function insert ($title) {
 		$date = date('Y-m-d H:i:s');
 		$data = array(
-				'post_id' => $post_id,
 				'title' => $title,
-				'email' => $email,
-				'body' => $body,
 				'date_created' => $date,
 				'last_updated' => $date
 		);
-		$this->db->insert('comments', $data);
+		$this->db->insert('blogs', $data);
 	}
 	
 	public function update() {
@@ -31,11 +28,11 @@ class Blog_model extends CI_Model {
 		$this->body = $_POST['body'];
 		$this->last_updated = date('Y-m-d H:i:s');
 			
-		$this->db->update('comments', $this, array('id' => $_POST['id']));
+		$this->db->update('blogs', $this, array('id' => $_POST['id']));
 	}
 	
 	public function delete() {
-		$this->db->delete('comments', array('id' => $_POST['id']));
+		$this->db->delete('blogs', array('id' => $_POST['id']));
 	}
 	
 }
